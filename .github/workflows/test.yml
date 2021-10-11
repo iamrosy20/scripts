@@ -3,13 +3,10 @@ name: HW2 Part C-2 workflow
 on:
     push:
         branches: [ main ]
-        paths:
-          - 'test/**'
+        paths: [ test/** ]       
 
     pull_request:
         branches: [ main ]
-
-    workflow_dispatch:
 
 jobs:
     build:
