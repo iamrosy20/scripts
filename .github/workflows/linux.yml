@@ -1,0 +1,25 @@
+name: HW2 Part C-1 workflow
+
+on:
+        push:
+                paths:
+                        - 'linux'
+
+jobs:
+        build:
+                runs-on: ubuntu-20.04
+
+                steps:
+                        - uses: actions/checkout@v2
+
+                        - name: Install gcc
+                          run: sudo apt-get install gcc-8
+
+                        - name: Download linux repository
+                          run: wget https://github.com/iamrosy20/linux/archive/$(git rev-parse HEAD:linux).zip
+
+                        - name: Unzip linux repository
+                          run: unzip $(git rev-parse HEAD:linux).zip
+
+                        - name: Build unzipped source code
+                          run: ./build-linux.sh linux-$(git rev-parse HEAD:linux) tinyconfig
