@@ -1,0 +1,20 @@
+name: HW2 Part C-2 workflow
+
+on:
+    push:
+        branches: [ main ]
+        paths: [ test/** ]
+
+    pull_request:
+        branches: [ main ]
+
+jobs:
+    build:
+        runs-on: ubuntu-20.04
+
+        steps:
+            - name: Checkout
+            - uses: actions/checkout@v2
+
+            - name: Compile test cases
+            - run: make -C test
