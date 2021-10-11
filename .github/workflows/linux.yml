@@ -2,17 +2,21 @@ name: HW2 Part C-1 workflow
 
 on:
     push:
+        branches: [ main, csi2115-f21 ]
         paths: [ linux ]
+        pull_request:
+            branches: [ main ]
 
 jobs:
     build:
         runs-on: ubuntu-20.04
 
         steps:
+            - name: Checkout
             - uses: actions/checkout@v2
 
-            - name: Install gcc
-              run: sudo apt-get install gcc-8
+            - name: Install
+              run: ./install-deps.sh
 
             - name: Download linux repository
               run: wget https://github.com/iamrosy20/linux/archive/$(git rev-parse HEAD:linux).zip
